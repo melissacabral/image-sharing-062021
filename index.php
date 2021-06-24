@@ -1,61 +1,56 @@
 <?php 
 require('config.php'); 
 require_once('includes/functions.php');
+
+//doctype and visible header
+require('includes/header.php');
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="utf-8">
-	<title>Image Sharing App</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" />
+<main class="content">
+	<?php 
+	//write it
+	//get the most recent 10 published posts
+	$result = $DB->prepare('SELECT posts.*, users.username, users.profile_pic, categories.* 
+							FROM posts, users, categories
+							WHERE posts.is_published = 1
+							AND posts.user_id = users.user_id 
+							AND posts.category_id = categories.category_id
+							ORDER BY posts.date DESC
+							LIMIT 10');
+	//run it
+	$result->execute();
 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-<div class="site">
-	<header class="header">
-		<h1>Image Sharing App</h1>
-	</header>
-	<main class="content">
-		<?php 
-		//write it
-		//get the most recent 10 published posts
-		$result = $DB->prepare('SELECT image, title, body, date 
-								FROM posts
-								WHERE is_published = 1
-								ORDER BY date DESC
-								LIMIT 10');
-		//run it
-		$result->execute();
-
-		//check it - did we find at least one row?
-		if( $result->rowCount() >= 1 ){
-			//loop it
-			while( $row = $result->fetch() ){
-		?>
-		
-		<div class="post">
-			<img src="<?php echo $row['image']; ?>">
-			<h2><?php echo $row['title']; ?></h2>
-			<p><?php echo $row['body']; ?></p>
-			<span class="date"><?php  nice_date($row['date']); ?></span>
-		</div>
-
-		<?php 
-			} //end while
-		}else{
-			//query found no posts
-			echo '<h2>Sorry, no posts found.</h2>';
-		} 
-		?>
-
-
-	</main>
-
-	<?php include('includes/sidebar.php'); ?>
+	//check it - did we find at least one row?
+	if( $result->rowCount() >= 1 ){
+		//loop it
+		while( $row = $result->fetch() ){
+	?>
 	
-	<footer class="footer"></footer>
-</div>
-</body>
-</html>
+	<div class="post">
+		<img src="<?php echo $row['image']; ?>">
+
+		<span class="author">
+			<img src="<?php echo $row['profile_pic']; ?>" width="50" height="50">
+			<?php echo $row['username']; ?>
+		</span>
+
+		<h2><?php echo $row['title']; ?></h2>
+		<p><?php echo $row['body']; ?></p>
+
+		<span class="category"><?php echo $row['name']; ?></span>
+		<span class="date"><?php  nice_date($row['date']); ?></span>
+		<span class="comment-count"><?php count_comments( $row['post_id'] ); ?></span>
+	</div>
+
+	<?php 
+		} //end while
+	}else{
+		//query found no posts
+		echo '<h2>Sorry, no posts found.</h2>';
+	} 
+	?>
+
+
+</main>
+
+<?php include('includes/sidebar.php'); ?>
+<?php include('includes/footer.php'); ?>
