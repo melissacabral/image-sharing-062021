@@ -12,4 +12,12 @@
 <div class="site">
 	<header class="header">
 		<h1><a href="index.php">Image Sharing App</a></h1>
+
+		<nav class="main-navigation">
+			<form class="searchform" action="search.php" method="get">
+				<label class="screen-reader-text">Search:</label>
+				<input type="search" name="phrase" value="<?php echo_if_exists($phrase); ?>">
+				<input type="submit" value="Search">
+			</form>
+		</nav>
 	</header>
