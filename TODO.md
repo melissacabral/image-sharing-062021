@@ -4,7 +4,6 @@ TODO
 
 
 
-
 DONE
 ----
 * "chunk" down the header and footer for our page templates
@@ -16,3 +15,6 @@ DONE
 * posts with recent comments in the sidebar
 * Add the single post template
 * create and parse the "add comment" form
+* build the search form
+* build the search results page
+* add pagination to "flip" through the results

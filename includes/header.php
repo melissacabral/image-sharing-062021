@@ -17,6 +17,7 @@
 			<form class="searchform" action="search.php" method="get">
 				<label class="screen-reader-text">Search:</label>
 				<input type="search" name="phrase" value="<?php echo_if_exists($phrase); ?>">
+				<input type="hidden" name="page" value="1">
 				<input type="submit" value="Search">
 			</form>
 		</nav>
