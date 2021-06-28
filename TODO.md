@@ -1,7 +1,6 @@
 TODO
 ====
 
-* create and parse the "add comment" form
 
 
 
@@ -16,3 +15,4 @@ DONE
 * a count of posts in each category
 * posts with recent comments in the sidebar
 * Add the single post template
+* create and parse the "add comment" form

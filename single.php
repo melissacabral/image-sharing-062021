@@ -1,13 +1,15 @@
 <?php 
-require('config.php'); 
-require_once('includes/functions.php');
-
-//doctype and visible header
-require('includes/header.php');
-
 //get the ID of the post we are trying to show, clean it
 //URL looks like single.php?post_id=x
 $post_id = filter_var($_GET['post_id'], FILTER_SANITIZE_NUMBER_INT);
+
+require('config.php'); 
+require_once('includes/functions.php');
+//form processor
+require('includes/comment-parse.php');
+
+//doctype and visible header
+require('includes/header.php');
 ?>
 <main class="content">
 	<?php 
@@ -46,7 +48,10 @@ $post_id = filter_var($_GET['post_id'], FILTER_SANITIZE_NUMBER_INT);
 		<span class="comment-count"><?php count_comments( $row['post_id'] ); ?></span>
 	</div>
 
-	<?php include('includes/comments.php'); ?>
+	<?php 
+	include( 'includes/comments.php');
+	include( 'includes/comment-form.php' ); 
+	?>
 
 	<?php 
 		} //end while
