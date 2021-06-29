@@ -1,6 +1,8 @@
 TODO
 ====
 
+* Add Login and parse
+* Add login authentication to certain features (commenting, new post etc)
 
 
 
@@ -18,3 +20,4 @@ DONE
 * build the search form
 * build the search results page
 * add pagination to "flip" through the results
+* Add Register form and parse new user accounts
