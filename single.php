@@ -5,11 +5,13 @@ $post_id = filter_var($_GET['post_id'], FILTER_SANITIZE_NUMBER_INT);
 
 require('config.php'); 
 require_once('includes/functions.php');
-//form processor
-require('includes/comment-parse.php');
 
 //doctype and visible header
 require('includes/header.php');
+
+//form processor
+require('includes/comment-parse.php');
+
 ?>
 <main class="content">
 	<?php 

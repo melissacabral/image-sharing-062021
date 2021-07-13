@@ -1,3 +1,7 @@
+<?php 
+//establish whether the viewer is logged in or not
+$logged_in_user = check_login();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +26,26 @@
 			</form>
 
 			<ul class="menu">
+				<?php 
+				//logged in menu items
+				if( $logged_in_user ){ ?>
+				<li>
+					<a href="#">New Post</a>
+				</li>
+				<li>
+					<a href="login.php?action=logout">Log Out</a>
+				</li>
+				<?php 
+				}else{
+				//not logged in menu items
+				?>
 				<li>
 					<a href="register.php">Sign Up</a>
 				</li>
 				<li>
 					<a href="login.php">Log In</a>
-				</li>	
+				</li>
+				<?php } //end menu logic ?>
 			</ul>
 		</nav>
 	</header>

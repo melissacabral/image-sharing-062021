@@ -1,3 +1,10 @@
+<?php 
+//leave this file if not logged in 
+if( ! $logged_in_user ){
+	//leave this file (comment-form.php)
+	echo 'Please log in to comment.';
+	return;
+} ?>
 <section class="comment-form" id="respond">
 	<h2>Leave a comment</h2>
 

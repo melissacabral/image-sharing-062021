@@ -2,6 +2,7 @@
 require('config.php'); 
 require_once('includes/functions.php');
 
+require('includes/logout-parse.php');
 require('includes/login-parse.php');
 
 //doctype 

@@ -1,4 +1,11 @@
 <aside class="sidebar">
+	<?php if( $logged_in_user ){ ?>
+	<section class="logged_in_user">
+		<img src="<?php echo $logged_in_user['profile_pic']; ?>" width="70" height="70">
+		Hello, <?php echo $logged_in_user['username']; ?>
+	</section>
+	<?php } //end if logged in ?>
+
 	
 	<?php 
 	//get the 5 most recently joined users
