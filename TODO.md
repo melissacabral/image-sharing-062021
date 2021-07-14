@@ -1,8 +1,7 @@
 TODO
 ====
 
-
-
+* step 2 of "new post" (edit post)
 
 DONE
 ----
@@ -23,3 +22,8 @@ DONE
 * add the "check login" function
 * Add login authentication to certain features (commenting, new post etc)
 * build logout functionality
+
+* Build the "new post" page and parser
+	* user must be logged in to access the page
+* automatically resize, crop and upload images into a folder on our server
+* store the post in the Database

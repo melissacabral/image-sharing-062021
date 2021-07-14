@@ -30,7 +30,7 @@ $logged_in_user = check_login();
 				//logged in menu items
 				if( $logged_in_user ){ ?>
 				<li>
-					<a href="#">New Post</a>
+					<a href="new-post.php">New Post</a>
 				</li>
 				<li>
 					<a href="login.php?action=logout">Log Out</a>
