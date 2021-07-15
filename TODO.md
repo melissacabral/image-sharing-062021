@@ -1,7 +1,6 @@
 TODO
 ====
 
-* step 2 of "new post" (edit post)
 
 DONE
 ----
@@ -27,3 +26,9 @@ DONE
 	* user must be logged in to access the page
 * automatically resize, crop and upload images into a folder on our server
 * store the post in the Database
+
+* step 2 of "new post" (edit post)
+
+* display images
+* pre-fill the edit form
+* add edit buttons to all of "my" posts

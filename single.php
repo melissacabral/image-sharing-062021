@@ -35,7 +35,7 @@ require('includes/comment-parse.php');
 	?>
 	
 	<div class="post">
-		<img src="<?php echo $row['image']; ?>">
+		<img src="<?php image_url( $row['image'], 'large' ) ?>">
 
 		<span class="author">
 			<img src="<?php echo $row['profile_pic']; ?>" width="50" height="50">

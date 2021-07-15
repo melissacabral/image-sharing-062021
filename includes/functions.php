@@ -94,13 +94,44 @@ function check_login(){
     }
 }
 
-//checkbox helper
+//checkbox helper. use to make a checkbox "sticky"
 function checked( $val1, $val2 ){
 	if( $val1 == $val2 ){
 		echo 'checked';
 	}
 }
+//select dropdown helper
+function selected( $val1, $val2 ){
+	if( $val1 == $val2 ){
+		echo 'selected';
+	}
+}
 
+
+/**
+ * displays sql query information including the computed parameters.
+ * Silent unless DEBUG MODE is set to 1 in config.php
+ * @param [type] $[name] [<description>]
+ */
+
+function debug_statement($sth){
+    if( DEBUG_MODE ){
+        echo '<pre>';
+    
+        $info =  debug_backtrace();
+        echo '<b>Debugger ran from ' . $info[0]['file'] . ' on line ' . $info[0]['line'] . '</b><br><br>';
+
+        $sth->debugDumpParams();
+        echo '</pre>';
+    }
+}
+
+/*
+Turn any image hash into a working url
+*/
+function image_url( $unique, $size = 'large' ){
+	echo 'uploads/' . $unique . '_' . $size . '.jpg';
+}
 
 
 //no close php

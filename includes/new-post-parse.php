@@ -105,6 +105,11 @@ if( $_POST['did_upload'] ){
 				//file and DB successful
 				$feedback = 'Success! Your post has been saved as a draft';
 				$feedback_class = 'success';
+
+				//get the post_id of the new post
+				$post_id = $DB->lastInsertId();
+				//redirect to step 2 "edit-post.php"
+				header("Location:edit-post.php?post_id=$post_id");
 			}else{
 				//database error
 				$feedback = 'Sorry, the post could not be saved';

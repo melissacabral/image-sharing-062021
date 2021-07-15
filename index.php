@@ -27,8 +27,14 @@ require('includes/header.php');
 	
 	<div class="post">
 		<a href="single.php?post_id=<?php echo $row['post_id']; ?>">
-			<img src="<?php echo $row['image']; ?>">
+			<img src="<?php image_url( $row['image'], 'large' ) ?>">
 		</a>
+
+		<?php if( $logged_in_user['user_id'] == $row['user_id'] ){ ?>
+		<a href="edit-post.php?post_id=<?php echo $row['post_id']; ?>" 
+			class="button button-outline">Edit</a>
+		<?php } ?>
+
 		<span class="author">
 			<img src="<?php echo $row['profile_pic']; ?>" width="50" height="50">
 			<?php echo $row['username']; ?>
