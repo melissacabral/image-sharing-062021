@@ -30,7 +30,7 @@ require('includes/header.php');
 			<img src="<?php image_url( $row['image'], 'large' ) ?>">
 		</a>
 
-		<?php if( $logged_in_user['user_id'] == $row['user_id'] ){ ?>
+		<?php if( $logged_in_user AND  $logged_in_user['user_id'] == $row['user_id'] ){ ?>
 		<a href="edit-post.php?post_id=<?php echo $row['post_id']; ?>" 
 			class="button button-outline">Edit</a>
 		<?php } ?>
