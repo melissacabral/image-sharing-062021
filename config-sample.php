@@ -16,6 +16,10 @@ $user = '';
 $pass = '';
 $dbname = '';
 
+$username_min = 5;
+$username_max = 30;
+$password_min = 7;
+
 
 /* -------------------------stop editing------------------------ */
 
