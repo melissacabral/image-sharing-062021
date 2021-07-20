@@ -134,4 +134,67 @@ function image_url( $unique, $size = 'large' ){
 }
 
 
+//Count how many followers any user has
+function count_followers( $user_id ){
+	global $DB;
+	$result = $DB->prepare('SELECT COUNT(*) AS total 
+							FROM follows
+							WHERE to_user_id = ?');
+	$result->execute( array( $user_id ) );
+	$row = $result->fetch();
+	//ternary operator example
+	echo $row['total'] == 1 ? '1 Follower' : $row['total'] . ' Followers' ;
+}
+
+//Count how many users a user is following
+function count_following( $user_id ){
+	global $DB;
+	$result = $DB->prepare('SELECT COUNT(*) AS total 
+							FROM follows
+							WHERE from_user_id = ?');
+	$result->execute( array( $user_id ) );
+	$row = $result->fetch();
+	//ternary operator example
+	echo $row['total'] == 1 ? '1 Following' : $row['total'] . ' Following' ;
+}
+
+/**
+ * Display all info about a user's from_users
+ * @param  int $user_id the profile we're viewing
+ * @return mixed HTML
+ */
+function follows_interface( $to_user, $from_user ){
+    global $DB;
+    //if viewer is logged in
+    if($from_user){
+        //are they already following this account?
+        $result = $DB->prepare("SELECT * FROM follows 
+                                WHERE to_user_id = ?
+                                AND from_user_id = ?
+                                LIMIT 1");
+        $result->execute(array( $to_user, $from_user ));
+        if($result->rowCount() >= 1){
+            //the viewer follows them
+            $class = 'button-outline';
+            $label = 'Unfollow';
+        }else{
+            //the viewer doesn't follow them yet
+            $class = 'button';
+            $label = 'Follow';
+        }
+    }
+   
+    ?>
+    <div class="item"><?php count_followers( $to_user ); ?></div>
+    <div class="item"><?php count_following( $to_user ); ?></div>
+    <?php if( $from_user AND $to_user != $from_user ){ ?>
+    <div class="item">
+        <button class="follow-button <?php echo $class; ?>" data-to="<?php echo $to_user; ?>">
+            <?php echo $label; ?>
+        </button>
+    </div>
+    <?php } 
+}
+
+
 //no close php

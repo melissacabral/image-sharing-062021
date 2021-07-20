@@ -35,11 +35,7 @@ if( isset($_GET['user_id']) ){
 			</div>
 
 			<div class="follows grid">
-				<div>999 posts</div>
-				<div>9999 Followers</div>
-				<div>9 following</div>
-			
-				
+				<?php follows_interface( $user_id, $logged_in_user['user_id'] ); ?>
 			</div>
 
 		

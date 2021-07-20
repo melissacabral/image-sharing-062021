@@ -1,15 +1,17 @@
 <aside class="sidebar">
 	<?php if( $logged_in_user ){ ?>
 	<section class="logged_in_user">
-		<img src="<?php echo $logged_in_user['profile_pic']; ?>" width="70" height="70">
+		<a href="profile.php?user_id=<?php echo $logged_in_user['user_id']; ?>">
+			<img src="<?php echo $logged_in_user['profile_pic']; ?>" width="70" height="70">
 		Hello, <?php echo $logged_in_user['username']; ?>
+		</a>
 	</section>
 	<?php } //end if logged in ?>
 
 	
 	<?php 
 	//get the 5 most recently joined users
-	$result = $DB->prepare('SELECT username, profile_pic
+	$result = $DB->prepare('SELECT username, profile_pic, user_id
 							FROM users
 							ORDER BY join_date DESC
 							LIMIT 5');
@@ -25,8 +27,12 @@
 			<?php 
 			//loop it
 			while( $row = $result->fetch() ){ ?>
-			<li class="user"><img src="<?php echo $row['profile_pic']; ?>" 
-				alt="<?php echo $row['username']; ?>" width="50" height="50"></li>
+			<li class="user">
+				<a href="profile.php?user_id=<?php echo $row['user_id']; ?>">
+					<img src="<?php echo $row['profile_pic']; ?>" 
+					alt="<?php echo $row['username']; ?>" width="50" height="50">
+				</a>
+			</li>
 			<?php } //end while ?>
 		</ul>
 	</section>

@@ -22,7 +22,7 @@ $password_min = 7;
 
 
 /* -------------------------stop editing------------------------ */
-
+session_start();
 
 /* DISPLAY ERRORS
 On a development server
